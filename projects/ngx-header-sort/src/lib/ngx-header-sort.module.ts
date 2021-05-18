@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
-import { NgxHeaderSortComponent } from './ngx-header-sort.component';
-
-
+import { NgxHeaderSortDirective } from './ngx-header-sort.directive';
 
 @NgModule({
   declarations: [
-    NgxHeaderSortComponent
+    NgxHeaderSortDirective
   ],
-  imports: [
-  ],
+  imports: [],
   exports: [
-    NgxHeaderSortComponent
-  ]
+    NgxHeaderSortDirective
+  ],
 })
-export class NgxHeaderSortModule { }
+export class NgxHeaderSortModule {}
