@@ -326,10 +326,10 @@
   <table>
     <thead>
       <tr>
-        <th ngxHeaderSort="firstName">
+        <th ngxHeaderSort="firstName" [sorting]="sortingProperty" (change)="sortChanged($event)">
           First Name
         </th>
-        <th ngxHeaderSort="lastName">
+        <th ngxHeaderSort="lastName" [sorting]="sortingProperty" (change)="sortChanged($event)">
           Last Name
         </th>
       </tr>

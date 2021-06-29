@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Inject, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Inject, Input, OnChanges, OnDestroy, Output, Renderer2, SimpleChanges } from '@angular/core';
 import {
     NgxHeaderSortOptions,
     NGX_HEADER_SORT_OPTIONS
@@ -7,9 +7,14 @@ import {
 @Directive({
     selector: '[ngxHeaderSort]'
 })
-export class NgxHeaderSortDirective {
+export class NgxHeaderSortDirective implements OnChanges, OnDestroy {
     @Input('ngxHeaderSort')
     columnName!: string;
+    @Input()
+    sorting?: string;
+
+    @Output()
+    change = new EventEmitter<{columnName: string, descending: boolean}>();
 
     @HostListener('click')
     onClickEvent(): void {
@@ -17,7 +22,6 @@ export class NgxHeaderSortDirective {
     }
 
     private iconElement?: ElementRef;
-    private iconAdded = false;
     private descending = false;
 
     constructor(
@@ -28,13 +32,26 @@ export class NgxHeaderSortDirective {
     ) {
     }
 
+    ngOnChanges(changes: SimpleChanges): void {
+        if(changes['sorting']) {
+            if(this.sorting !== this.columnName) {
+                this.reset();
+            }
+        }
+    }
+
+    ngOnDestroy(): void {
+        this.reset();
+    }
+
     private onClick(): void {
-        if (!this.iconAdded) {
+        if (this.iconElement == undefined) {
             this.addSortIcon();
         }
         else{
             this.changeDirection();
         }
+        this.change.emit({columnName: this.columnName, descending: this.descending});
     }
 
     private addSortIcon(): void {
@@ -44,7 +61,14 @@ export class NgxHeaderSortDirective {
             this.iconElement.nativeElement
         );
         this.addClass(this.iconElement, this.options.ascendingIconClass);
-        this.iconAdded = true;
+    }
+
+    private reset(): void {
+        if(this.iconElement) {
+            this.renderer.removeChild(this.element.nativeElement, this.iconElement.nativeElement);
+            this.iconElement = undefined;
+            this.descending = false;
+        }
     }
 
     private changeDirection(): void {

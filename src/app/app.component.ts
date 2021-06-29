@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    sortingProperty?: string;
+    sortingDescending = false;
+
     people = [
         {
             firstName: 'Trycia',
@@ -48,4 +51,27 @@ export class AppComponent {
             lastName: 'Kuhlman'
         }
     ];
+
+    sortChanged($event: { columnName: string, descending: boolean; }): void {
+        this.sortingProperty = $event.columnName;
+        this.sortingDescending = $event.descending;
+
+        const multiplier = this.sortingDescending ? -1 : 1;
+
+        this.people.sort((first, second) => {
+            if (first.hasOwnProperty(this.sortingProperty!) && second.hasOwnProperty(this.sortingProperty!)) {
+                const firstPropertyValue = (first as any)[this.sortingProperty!];
+                const secondPropertyValue = (second as any)[this.sortingProperty!];
+
+                if(firstPropertyValue > secondPropertyValue) {
+                    return 1 * multiplier;
+                }
+                else{
+                    return -1 * multiplier;
+                }
+            }
+
+            return 0;
+        });
+    }
 }
