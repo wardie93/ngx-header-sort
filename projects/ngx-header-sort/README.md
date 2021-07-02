@@ -1,24 +1,93 @@
-# NgxHeaderSort
+# ngx-header-sort
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
+A simple directive to add icons to display sorting status of tables and automatically flip the icon for ascending/descending.
 
-## Code scaffolding
+[![npm version](https://badge.fury.io/js/ngx-header-sort.svg)](https://badge.fury.io/js/ngx-header-sort)
 
-Run `ng generate component component-name --project ngx-header-sort` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-header-sort`.
-> Note: Don't forget to add `--project ngx-header-sort` or else it will be added to the default project in your `angular.json` file. 
+## Table of contents
+- [ngx-header-sort](#ngx-header-sort)
+  - [Table of contents](#table-of-contents)
+  - [Demo](#demo)
+  - [Installation](#installation)
+    - [NPM](#npm)
+  - [Getting started](#getting-started)
+  - [Customisation](#customisation)
+    - [Styles](#styles)
 
-## Build
+## Demo
 
-Run `ng build ngx-header-sort` to build the project. The build artifacts will be stored in the `dist/` directory.
+For a demo, download the repository, then run the following commands
 
-## Publishing
+```
+npm run watch:lib
+npm start
+```
 
-After building your library with `ng build ngx-header-sort`, go to the dist folder `cd dist/ngx-header-sort` and run `npm publish`.
+The first command will compile `ngx-header-sort`, the second command will open a demo site that shows this working.
 
-## Running unit tests
+## Installation
+Install `ngx-header-sort` via NPM, using the command below.
 
-Run `ng test ngx-header-sort` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### NPM
+```shell
+npm install --save ngx-header-sort
+```
 
-## Further help
+## Getting started
+Import the `NgxHeaderSortModule` in your root application module:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { NgxHeaderSortModule } from 'ngx-header-sort';
+
+@NgModule({
+  //...
+  imports: [
+    //...
+    NgxHeaderSortModule.forRoot()
+  ],
+  //...
+})
+export class AppModule { }
+```
+
+You must mark a HTML element as being an element that will have the sort icon appended within it.
+
+```html
+<div ngxHeaderSort></div>
+```
+
+This will create a new element within this marked HTML element that will display the icon. This can be customised using CSS classes. See [Customisation](#customisation)
+
+## Customisation
+
+There is only one thing that you can customise and that is the default icon to display when displaying that you are sorting in the ascending direction. This is setup as part of the initial module setup.
+
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { NgxHeaderSortModule } from 'ngx-header-sort';
+
+@NgModule({
+  //...
+  imports: [
+    //...
+    NgxHeaderSortModule.forRoot({
+        config: {
+            ascendingIconClass: 'fas fa-arrow-up'
+        }
+    })
+  ],
+  //...
+})
+export class AppModule { }
+```
+
+### Styles
+
+You also want to include the styles for the library as this is where the animation is contained.
+
+```scss
+@import 'ngx-header-sort/assets/ngx-header-sort.scss';
+```
