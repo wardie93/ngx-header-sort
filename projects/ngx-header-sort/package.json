@@ -1,8 +1,31 @@
 {
-  "name": "ngx-header-sort",
-  "version": "0.0.2",
-  "peerDependencies": {
-    "@angular/common": ">=10.0.0",
-    "@angular/core": ">=10.0.0"
-  }
+    "name": "ngx-header-sort",
+    "version": "0.0.4",
+    "description": "A directive that auto adds an icon when sorting and flips it when sorting the other way.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wardie93/ngx-header-sort.git"
+    },
+    "keywords": [
+        "Angular",
+        "ng",
+        "ngx",
+        "header",
+        "sort",
+        "table",
+        "busy",
+        "wait",
+        "ngx-header-sort"
+    ],
+    "author": "Liam Ward",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/wardie93/ngx-header-sort/issues"
+    },
+    "homepage": "https://github.com/wardie93/ngx-header-sort#readme",
+    "peerDependencies": {
+        "@angular/animations": ">=9.0.0",
+        "@angular/common": ">=9.0.0",
+        "@angular/core": ">=9.0.0"
+    }
 }
