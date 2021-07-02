@@ -9,10 +9,14 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
+        "version:patch": "cd projects/ngx-header-sort && npm version patch",
+        "version:minor": "cd projects/ngx-header-sort && npm version patch",
+        "version:major": "cd projects/ngx-header-sort && npm version patch",
         "build:lib": "ng build --project=ngx-header-sort",
-        "build:lib:prod": "ng build --project=ngx-header-sort --prod",
+        "build:lib:prod": "ng build --project=ngx-header-sort --configuration production",
         "watch:lib": "ng build --project=ngx-header-sort --watch",
-        "watch:lib:prod": "ng build --project=ngx-header-sort --watch --prod"
+        "watch:lib:prod": "ng build --project=ngx-header-sort --watch --configuration production",
+        "publish": "cd dist/ngx-header-sort && npm publish"
     },
     "private": true,
     "dependencies": {
