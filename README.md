@@ -34,6 +34,13 @@ npm install --save ngx-header-sort
 ```
 
 ## Getting started
+
+First thing is to include the styles file. In your styles file include the following line:
+
+```scss
+@import '../node_modules/ngx-header-sort/assets/ngx-header-sort.scss';
+```
+
 Import the `NgxHeaderSortModule` in your root application module:
 
 ```typescript
@@ -58,7 +65,7 @@ You must mark a HTML element as being an element that will have the sort icon ap
 <div ngxHeaderSort></div>
 ```
 
-This will create a new element within this marked HTML element that will display the icon. This can be customised using CSS classes. See [Customisation](#customisation)
+This will create a new element within this marked HTML element that will display the icon. This can be customised using CSS classes. See [Customisation](#customisation).
 
 ## Customisation
 

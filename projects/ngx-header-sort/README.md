@@ -34,6 +34,13 @@ npm install --save ngx-header-sort
 ```
 
 ## Getting started
+
+First thing is to include the styles file. In your styles file include the following line:
+
+```scss
+@import '../node_modules/ngx-header-sort/assets/ngx-header-sort.scss';
+```
+
 Import the `NgxHeaderSortModule` in your root application module:
 
 ```typescript
