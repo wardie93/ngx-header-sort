@@ -24,6 +24,8 @@ export class NgxHeaderSortDirective implements OnChanges, OnDestroy {
 
     private iconElement?: ElementRef;
     private descending = false;
+    private ascendingInternalClass = 'ngx-header-sort--ascending';
+    private descendingInternalClass = 'ngx-header-sort--ascending';
 
     constructor(
         private readonly element: ElementRef,
@@ -62,6 +64,7 @@ export class NgxHeaderSortDirective implements OnChanges, OnDestroy {
             this.iconElement.nativeElement
         );
         this.addClass(this.iconElement, this.options.ascendingIconClass);
+        this.addClass(this.iconElement, this.ascendingInternalClass);
     }
 
     private reset(): void {
@@ -74,12 +77,12 @@ export class NgxHeaderSortDirective implements OnChanges, OnDestroy {
 
     private changeDirection(): void {
         if (this.descending) {
-            this.removeClass(this.iconElement!, 'ngx-header-sort--descending');
-            this.addClass(this.iconElement!, 'ngx-header-sort--ascending');
+            this.removeClass(this.iconElement!, this.descendingInternalClass);
+            this.addClass(this.iconElement!, this.ascendingInternalClass);
         }
         else{
-            this.removeClass(this.iconElement!, 'ngx-header-sort--ascending');
-            this.addClass(this.iconElement!, 'ngx-header-sort--descending');
+            this.removeClass(this.iconElement!, this.ascendingInternalClass);
+            this.addClass(this.iconElement!, this.descendingInternalClass);
         }
         this.descending = !this.descending;
     }
