@@ -1,4 +1,16 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Inject, Input, OnChanges, OnDestroy, Output, Renderer2, SimpleChanges } from '@angular/core';
+import {
+    Directive,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    Inject,
+    Input,
+    OnChanges,
+    OnDestroy,
+    Output,
+    Renderer2,
+    SimpleChanges
+} from '@angular/core';
 import { NgxHeaderSortEvent } from './ngx-header-sort.event';
 import {
     NgxHeaderSortOptions,
@@ -25,19 +37,18 @@ export class NgxHeaderSortDirective implements OnChanges, OnDestroy {
     private iconElement?: ElementRef;
     private descending = false;
     private ascendingInternalClass = 'ngx-header-sort--ascending';
-    private descendingInternalClass = 'ngx-header-sort--ascending';
+    private descendingInternalClass = 'ngx-header-sort--descending';
 
     constructor(
         private readonly element: ElementRef,
         private readonly renderer: Renderer2,
         @Inject(NGX_HEADER_SORT_OPTIONS)
         private readonly options: NgxHeaderSortOptions
-    ) {
-    }
+    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
-        if(changes['sorting']) {
-            if(this.sorting !== this.columnName) {
+        if (changes['sorting']) {
+            if (this.sorting !== this.columnName) {
                 this.reset();
             }
         }
@@ -50,11 +61,13 @@ export class NgxHeaderSortDirective implements OnChanges, OnDestroy {
     private onClick(): void {
         if (this.iconElement == undefined) {
             this.addSortIcon();
-        }
-        else{
+        } else {
             this.changeDirection();
         }
-        this.change.emit({columnName: this.columnName, descending: this.descending});
+        this.change.emit({
+            columnName: this.columnName,
+            descending: this.descending
+        });
     }
 
     private addSortIcon(): void {
@@ -68,23 +81,26 @@ export class NgxHeaderSortDirective implements OnChanges, OnDestroy {
     }
 
     private reset(): void {
-        if(this.iconElement) {
-            this.renderer.removeChild(this.element.nativeElement, this.iconElement.nativeElement);
+        if (this.iconElement) {
+            this.renderer.removeChild(
+                this.element.nativeElement,
+                this.iconElement.nativeElement
+            );
             this.iconElement = undefined;
             this.descending = false;
         }
     }
 
     private changeDirection(): void {
-        if (this.descending) {
-            this.removeClass(this.iconElement!, this.descendingInternalClass);
-            this.addClass(this.iconElement!, this.ascendingInternalClass);
-        }
-        else{
-            this.removeClass(this.iconElement!, this.ascendingInternalClass);
-            this.addClass(this.iconElement!, this.descendingInternalClass);
-        }
+        this.removeClass(this.iconElement!, this.descendingInternalClass);
+        this.removeClass(this.iconElement!, this.ascendingInternalClass);
         this.descending = !this.descending;
+        this.addClass(
+            this.iconElement!,
+            this.descending
+                ? this.descendingInternalClass
+                : this.ascendingInternalClass
+        );
     }
 
     private addClass(element: ElementRef, $class: string): void {
