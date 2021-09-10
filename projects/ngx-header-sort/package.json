@@ -1,6 +1,6 @@
 {
     "name": "ngx-header-sort",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "A directive that auto adds an icon when sorting and flips it when sorting the other way.",
     "repository": {
         "type": "git",
