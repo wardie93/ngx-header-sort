@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgxHeaderSortEvent } from 'ngx-header-sort';
 
 @Component({
     selector: 'app-root',
@@ -52,7 +53,7 @@ export class AppComponent {
         }
     ];
 
-    sortChanged($event: { columnName: string, descending: boolean; }): void {
+    sortChanged($event: NgxHeaderSortEvent): void {
         this.sortingProperty = $event.columnName;
         this.sortingDescending = $event.descending;
 

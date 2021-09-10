@@ -8,3 +8,4 @@ export {
     NgxHeaderSortOptions,
     NGX_HEADER_SORT_OPTIONS
 } from './lib/ngx-header-sort.options';
+export * from './lib/ngx-header-sort.event';

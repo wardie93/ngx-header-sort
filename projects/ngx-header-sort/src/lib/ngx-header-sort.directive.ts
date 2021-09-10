@@ -1,4 +1,5 @@
 import { Directive, ElementRef, EventEmitter, HostListener, Inject, Input, OnChanges, OnDestroy, Output, Renderer2, SimpleChanges } from '@angular/core';
+import { NgxHeaderSortEvent } from './ngx-header-sort.event';
 import {
     NgxHeaderSortOptions,
     NGX_HEADER_SORT_OPTIONS
@@ -14,7 +15,7 @@ export class NgxHeaderSortDirective implements OnChanges, OnDestroy {
     sorting?: string;
 
     @Output()
-    change = new EventEmitter<{columnName: string, descending: boolean}>();
+    change = new EventEmitter<NgxHeaderSortEvent>();
 
     @HostListener('click')
     onClickEvent(): void {
